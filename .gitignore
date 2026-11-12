@@ -1,0 +1,7 @@
+.venv/
+.pyspark-env/
+__pycache__/
+*.pyc
+spark-warehouse/
+metastore_db/
+.vscode/

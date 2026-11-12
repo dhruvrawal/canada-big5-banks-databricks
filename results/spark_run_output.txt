@@ -1,0 +1,249 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+26/11/11 19:36:55 WARN Shell: Did not find winutils.exe: java.io.FileNotFoundException: java.io.FileNotFoundException: HADOOP_HOME and hadoop.home.dir are unset. -see https://cwiki.apache.org/confluence/display/HADOOP2/WindowsProblems
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+D:\Work\projects\canada-big5-banks-databricks\.venv\Lib\site-packages\pyspark\testing\utils.py:127: FutureWarning: PySpark does not yet fully support pandas >= 3.0.0. Some features may not work correctly. It is recommended to use pandas < 3.0.0 for now.
+  require_minimum_pandas_version()
+26/11/11 19:36:55 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+rows kept: 300000 of 300000
+
+=== output 1 ===
++------------+---------+---------+
+|primary_bank|customers|share_pct|
++------------+---------+---------+
+|RBC         |5296     |26.5     |
+|TD          |5235     |26.2     |
+|BNS         |3928     |19.6     |
+|BMO         |2919     |14.6     |
+|CIBC        |2622     |13.1     |
++------------+---------+---------+
+
+
+=== output 2 ===
++-------+--------------+
+|bank_id|deposits_cad_m|
++-------+--------------+
+|RBC    |56.5          |
+|TD     |55.8          |
+|BNS    |42.6          |
+|BMO    |32.1          |
+|CIBC   |27.6          |
++-------+--------------+
+
+
+=== output 3 ===
++-------+-----+-----------+-------+
+|bank_id|txns |spend_cad_m|avg_txn|
++-------+-----+-----------+-------+
+|TD     |78237|12.66      |161.82 |
+|RBC    |79545|12.56      |157.92 |
+|BNS    |58668|9.31       |158.7  |
+|BMO    |44034|6.97       |158.33 |
+|CIBC   |39516|6.31       |159.78 |
++-------+-----+-----------+-------+
+
+
+=== output 4 ===
++-------------------+-------+------------------+--------------+
+|txn_month          |bank_id|spend             |mom_growth_pct|
++-------------------+-------+------------------+--------------+
+|2024-01-01 00:00:00|BMO    |302725.61         |NULL          |
+|2024-02-01 00:00:00|BMO    |236741.84999999998|-21.8         |
+|2024-03-01 00:00:00|BMO    |310416.11         |31.1          |
+|2024-04-01 00:00:00|BMO    |304482.23         |-1.9          |
+|2024-05-01 00:00:00|BMO    |306165.35         |0.6           |
+|2024-06-01 00:00:00|BMO    |326486.7          |6.6           |
+|2024-07-01 00:00:00|BMO    |311526.29         |-4.6          |
+|2024-08-01 00:00:00|BMO    |293979.37000000005|-5.6          |
+|2024-09-01 00:00:00|BMO    |264401.78         |-10.1         |
+|2024-10-01 00:00:00|BMO    |254402.22000000003|-3.8          |
+|2024-11-01 00:00:00|BMO    |291647.23000000004|14.6          |
+|2024-12-01 00:00:00|BMO    |274599.6100000001 |-5.8          |
+|2025-01-01 00:00:00|BMO    |313161.51000000007|14.0          |
+|2025-02-01 00:00:00|BMO    |252898.72999999998|-19.2         |
+|2025-03-01 00:00:00|BMO    |310269.68000000005|22.7          |
+|2025-04-01 00:00:00|BMO    |285319.0199999999 |-8.0          |
+|2025-05-01 00:00:00|BMO    |252780.86000000004|-11.4         |
+|2025-06-01 00:00:00|BMO    |320525.0          |26.8          |
+|2025-07-01 00:00:00|BMO    |311329.33         |-2.9          |
+|2025-08-01 00:00:00|BMO    |277913.05         |-10.7         |
+|2025-09-01 00:00:00|BMO    |269349.34         |-3.1          |
+|2025-10-01 00:00:00|BMO    |359839.77999999997|33.6          |
+|2025-11-01 00:00:00|BMO    |284218.76999999996|-21.0         |
+|2025-12-01 00:00:00|BMO    |256630.57999999993|-9.7          |
+|2024-01-01 00:00:00|BNS    |405228.23999999993|NULL          |
+|2024-02-01 00:00:00|BNS    |350523.76999999996|-13.5         |
+|2024-03-01 00:00:00|BNS    |419368.0100000001 |19.6          |
+|2024-04-01 00:00:00|BNS    |390469.3599999999 |-6.9          |
+|2024-05-01 00:00:00|BNS    |411793.4499999999 |5.5           |
+|2024-06-01 00:00:00|BNS    |373676.4          |-9.3          |
++-------------------+-------+------------------+--------------+
+only showing top 30 rows
+
+=== output 5 ===
++-------+--------------+----------------+
+|bank_id|fraud_rate_pct|fraud_loss_cad_k|
++-------+--------------+----------------+
+|CIBC   |0.412         |59.6            |
+|TD     |0.4           |136.7           |
+|RBC    |0.399         |119.2           |
+|BMO    |0.395         |69.0            |
+|BNS    |0.373         |67.9            |
++-------+--------------+----------------+
+
+
+=== output 6 ===
++---------------+-------+--------------+
+|category       |channel|fraud_rate_pct|
++---------------+-------+--------------+
+|Online Shopping|Mobile |0.871         |
+|Online Shopping|Online |0.766         |
+|Online Shopping|POS    |0.743         |
+|Rent/Mortgage  |ATM    |0.706         |
+|Rent/Mortgage  |Online |0.67          |
+|Online Shopping|ATM    |0.637         |
+|Rent/Mortgage  |Mobile |0.605         |
+|Rent/Mortgage  |POS    |0.577         |
+|Transfer       |ATM    |0.496         |
+|Entertainment  |Online |0.477         |
++---------------+-------+--------------+
+
+
+=== output 7 ===
++-------+--------------+-----+----------+----------------+--------+
+|bank_id|loan_type     |loans|book_cad_m|default_rate_pct|avg_rate|
++-------+--------------+-----+----------+----------------+--------+
+|BMO    |Auto          |326  |7.1       |2.76            |4.03    |
+|BMO    |Line of Credit|223  |4.9       |1.79            |4.13    |
+|BMO    |Mortgage      |489  |206.7     |2.86            |4.09    |
+|BMO    |Personal      |253  |5.8       |4.74            |4.11    |
+|BNS    |Auto          |452  |10.1      |2.88            |4.01    |
+|BNS    |Line of Credit|346  |7.5       |2.89            |4.01    |
+|BNS    |Mortgage      |612  |255.0     |3.27            |4.06    |
+|BNS    |Personal      |319  |7.1       |5.33            |4.11    |
+|CIBC   |Auto          |302  |6.6       |1.99            |4.04    |
+|CIBC   |Line of Credit|247  |5.6       |0.81            |4.09    |
+|CIBC   |Mortgage      |426  |183.7     |2.58            |4.07    |
+|CIBC   |Personal      |228  |5.1       |3.51            |4.03    |
+|RBC    |Auto          |603  |13.6      |3.32            |4.06    |
+|RBC    |Line of Credit|527  |11.6      |4.55            |4.11    |
+|RBC    |Mortgage      |834  |347.6     |2.76            |4.04    |
+|RBC    |Personal      |465  |10.0      |6.24            |4.09    |
+|TD     |Auto          |571  |12.5      |3.68            |4.07    |
+|TD     |Line of Credit|495  |11.2      |2.63            |4.03    |
+|TD     |Mortgage      |785  |336.2     |2.42            |4.01    |
+|TD     |Personal      |497  |11.3      |4.23            |4.1     |
++-------+--------------+-----+----------+----------------+--------+
+
+
+=== output 8 ===
++----------+----------------+-----+
+|score_band|default_rate_pct|loans|
++----------+----------------+-----+
+|600-679   |2.12            |3060 |
+|680-739   |2.58            |2864 |
+|740+      |2.75            |2295 |
+|<600      |12.04           |781  |
++----------+----------------+-----+
+
+
+=== output 9 ===
++--------+------------+-----+
+|province|primary_bank|count|
++--------+------------+-----+
+|AB      |TD          |668  |
+|AB      |RBC         |634  |
+|AB      |BNS         |453  |
+|AB      |BMO         |362  |
+|AB      |CIBC        |356  |
+|BC      |RBC         |754  |
+|BC      |TD          |751  |
+|BC      |BNS         |567  |
+|BC      |BMO         |393  |
+|BC      |CIBC        |375  |
+|MB      |RBC         |221  |
+|MB      |TD          |216  |
+|MB      |BNS         |151  |
+|MB      |CIBC        |104  |
+|MB      |BMO         |104  |
+|NB      |TD          |108  |
+|NB      |RBC         |103  |
+|NB      |BNS         |80   |
+|NB      |BMO         |62   |
+|NB      |CIBC        |52   |
+|NL      |RBC         |62   |
+|NL      |BNS         |44   |
+|NL      |TD          |40   |
+|NL      |BMO         |35   |
+|NL      |CIBC        |17   |
+|NS      |TD          |155  |
+|NS      |RBC         |150  |
+|NS      |BNS         |108  |
+|NS      |BMO         |87   |
+|NS      |CIBC        |79   |
++--------+------------+-----+
+only showing top 30 rows
+
+=== output 10 ===
++------------+--------------+---------+
+|primary_bank|segment       |churn_pct|
++------------+--------------+---------+
+|BMO         |Affluent      |6.6      |
+|BMO         |Mass Market   |9.4      |
+|BMO         |Small Business|9.2      |
+|BMO         |Student       |11.6     |
+|BNS         |Affluent      |7.1      |
+|BNS         |Mass Market   |8.2      |
+|BNS         |Small Business|9.9      |
+|BNS         |Student       |14.1     |
+|CIBC        |Affluent      |7.8      |
+|CIBC        |Mass Market   |7.7      |
+|CIBC        |Small Business|11.4     |
+|CIBC        |Student       |14.9     |
+|RBC         |Affluent      |9.2      |
+|RBC         |Mass Market   |8.9      |
+|RBC         |Small Business|8.5      |
+|RBC         |Student       |14.4     |
+|TD          |Affluent      |8.3      |
+|TD          |Mass Market   |8.1      |
+|TD          |Small Business|6.4      |
+|TD          |Student       |11.7     |
++------------+--------------+---------+
+D:\Work\projects\canada-big5-banks-databricks\.venv\Lib\site-packages\pyspark\sql\pandas\conversion.py:324: FutureWarning: PySpark does not yet fully support pandas >= 3.0.0. Some features may not work correctly. It is recommended to use pandas < 3.0.0 for now.
+  require_minimum_pandas_version()
+D:\Work\projects\canada-big5-banks-databricks\.venv\Lib\site-packages\pyspark\sql\pandas\conversion.py:374: UserWarning: toPandas attempted Arrow optimization because 'spark.sql.execution.arrow.pyspark.enabled' is set to true; however, failed by the reason below:
+  [PACKAGE_NOT_INSTALLED] PyArrow >= 18.0.0 must be installed; however, it was not found.
+Attempting non-optimization as 'spark.sql.execution.arrow.pyspark.fallback.enabled' is set to true.
+  warn(msg)
+
+AUC: 0.665
+
+=== output 11 ===
++-----------------+-------------------+
+|feature          |importance         |
++-----------------+-------------------+
+|credit_score     |0.25557896485733045|
+|annual_income    |0.16396367979838358|
+|age              |0.14838122929853767|
+|interest_rate_pct|0.14776874187656375|
+|principal_cad    |0.13485241624206593|
+|term_months      |0.08776412213637688|
+|lt_idx           |0.06169084579074167|
++-----------------+-------------------+
+
+
+=== output 12 ===
++------------+---------+---------+--------------+----------------+
+|primary_bank|customers|share_pct|deposits_cad_m|default_rate_pct|
++------------+---------+---------+--------------+----------------+
+|BMO         |2919     |14.6     |32.1          |3.02            |
+|BNS         |3928     |19.6     |42.6          |3.47            |
+|TD          |5235     |26.2     |55.8          |3.15            |
+|CIBC        |2622     |13.1     |27.6          |2.24            |
+|RBC         |5296     |26.5     |56.5          |3.95            |
++------------+---------+---------+--------------+----------------+
+
+SUCCESS: The process with PID 20320 (child process of PID 13468) has been terminated.
+SUCCESS: The process with PID 13468 (child process of PID 20528) has been terminated.
+SUCCESS: The process with PID 20528 (child process of PID 13080) has been terminated.

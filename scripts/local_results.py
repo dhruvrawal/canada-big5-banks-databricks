@@ -1,0 +1,27 @@
+"""Pandas replica of the notebook's key queries -> results/*.csv (sanity check + sample outputs)."""
+import pandas as pd, os
+D = os.path.join(os.path.dirname(__file__), "..", "data"); R = os.path.join(os.path.dirname(__file__), "..", "results")
+r = lambda n: pd.read_csv(f"{D}/{n}.csv")
+cu, ac, tx, lo = r("customers"), r("accounts"), r("transactions"), r("loans")
+t = tx.merge(ac[["account_id", "bank_id"]], on="account_id")
+out = {}
+s = cu.groupby("primary_bank").size().rename("customers").to_frame()
+s["share_pct"] = (s.customers / s.customers.sum() * 100).round(1)
+s["deposits_cad_m"] = (ac[ac.account_type != "Credit Card"].groupby("bank_id").balance.sum() / 1e6).round(1)
+s["txns"] = t.groupby("bank_id").size()
+s["spend_cad_m"] = (t.groupby("bank_id").amount_cad.sum() / 1e6).round(2)
+s["fraud_rate_pct"] = (t.groupby("bank_id").is_fraud.mean() * 100).round(3)
+s["loan_default_rate_pct"] = (lo.groupby("bank_id").defaulted.mean() * 100).round(2)
+s["loan_book_cad_m"] = (lo.groupby("bank_id").principal_cad.sum() / 1e6).round(1)
+s["churn_pct"] = (cu.groupby("primary_bank").churned.mean() * 100).round(1)
+out["bank_scorecard"] = s.sort_values("customers", ascending=False).reset_index().rename(columns={"primary_bank": "bank_id"})
+l = lo.merge(cu[["customer_id", "credit_score"]], on="customer_id")
+l["score_band"] = pd.cut(l.credit_score, [0, 599, 679, 739, 900], labels=["<600", "600-679", "680-739", "740+"])
+g = l.groupby("score_band", observed=True).defaulted.agg(["mean", "size"])
+g["mean"] = (g["mean"] * 100).round(2)
+out["default_by_credit_band"] = g.reset_index().rename(columns={"mean": "default_rate_pct", "size": "loans"})
+out["default_by_loan_type"] = lo.groupby("loan_type").defaulted.mean().mul(100).round(2).rename("default_rate_pct").reset_index()
+out["fraud_by_category"] = t.groupby("category").is_fraud.mean().mul(100).round(3).rename("fraud_rate_pct").reset_index().sort_values("fraud_rate_pct", ascending=False)
+out["churn_by_segment"] = cu.groupby("segment").churned.mean().mul(100).round(1).rename("churn_pct").reset_index()
+for k, v in out.items():
+    v.to_csv(f"{R}/{k}.csv", index=False); print("\n##", k); print(v.to_string(index=False))
