@@ -33,7 +33,7 @@ Analytics project covering RBC, TD, Scotiabank (BNS), BMO and CIBC, built with *
 ## Sample results (verified with pandas replica: `scripts/local_results.py` → `/results`)
 - Default rate by credit score: **12.0%** for <600 vs ~2–3% for 600+ (strongest risk driver)
 - Personal loans default most (**4.9%**) vs ~2.8% for mortgages
-- Online shopping has the highest fraud rate (**0.77%** vs ~0.3% average)
+- Online shopping has the highest fraud rate (**0.77%** vs ~0.4% average)
 - Students churn most (**13.3%** vs ~8% others)
 
 - Random Forest loan-default model (Spark MLlib, 80/20 split, seed 42): **AUC = 0.665**; credit score is the top feature (importance 0.26), followed by annual income, age and interest rate. Modest by design, since the synthetic default flag is mostly noise on top of a few rules.
@@ -42,14 +42,14 @@ All figures come from a local PySpark run (`notebooks/Canada_Big5_Banks_Local.py
 
 ## Resume bullets (copy–paste)
 **Canada Big 5 Banks Analytics | Databricks, PySpark, Spark SQL, Delta Lake, MLlib** (Personal Project, 2026)
-- Built an end-to-end lakehouse pipeline on Databricks processing 370K+ synthetic records (customers, accounts, transactions, loans) modelled on RBC, TD, Scotiabank, BMO and CIBC; Bronze→Silver→Gold Delta tables with data-quality checks.
-- Analyzed fraud, churn and credit risk with PySpark and window functions; identified that sub-600 credit scores carried ~4x the loan default rate of other bands and that online-shopping transactions had ~2.5x the average fraud rate.
+- Built an end-to-end lakehouse pipeline on Databricks processing ~369K synthetic records (customers, accounts, transactions, loans) modelled on RBC, TD, Scotiabank, BMO and CIBC; Bronze→Silver→Gold Delta tables with data-quality checks.
+- Analyzed fraud, churn and credit risk with PySpark and window functions; identified that sub-600 credit scores carried ~5x the loan default rate of other bands and that online-shopping transactions had ~1.9x the average fraud rate.
 - Trained a Spark MLlib Random Forest to predict loan default (AUC 0.67; credit score the top driver) and delivered a gold bank-scorecard table for Power BI/Tableau dashboards.
 
 ## LinkedIn post (draft)
-I built a Databricks project comparing Canada's Big 5 banks (RBC, TD, Scotiabank, BMO, CIBC) on a synthetic retail-banking dataset of 370K+ records.
+I built a Databricks project comparing Canada's Big 5 banks (RBC, TD, Scotiabank, BMO, CIBC) on a synthetic retail-banking dataset of ~369K records.
 
-Using PySpark, Delta Lake and Spark MLlib, I built a Bronze→Silver→Gold pipeline and analyzed fraud, churn and loan-default risk. Key finding: customers under a 600 credit score defaulted at ~4x the rate of everyone else.
+Using PySpark, Delta Lake and Spark MLlib, I built a Bronze→Silver→Gold pipeline and analyzed fraud, churn and loan-default risk. Key finding: customers under a 600 credit score defaulted at ~5x the rate of everyone else.
 
 Data is synthetic (real bank data isn't public), but the workflow mirrors what a bank analytics team does. Code on GitHub: [link]
 
