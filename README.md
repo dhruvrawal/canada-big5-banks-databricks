@@ -39,20 +39,3 @@ Analytics project covering RBC, TD, Scotiabank (BNS), BMO and CIBC, built with *
 - Random Forest loan-default model (Spark MLlib, 80/20 split, seed 42): **AUC = 0.665**; credit score is the top feature (importance 0.26), followed by annual income, age and interest rate. Modest by design, since the synthetic default flag is mostly noise on top of a few rules.
 
 All figures come from a local PySpark run (`notebooks/Canada_Big5_Banks_Local.py`; full output in `results/spark_run_output.txt`). A Databricks run on the same CSVs should match; the model AUC may differ slightly with the Spark version.
-
-## Resume bullets (copy–paste)
-**Canada Big 5 Banks Analytics | Databricks, PySpark, Spark SQL, Delta Lake, MLlib** (Personal Project, 2026)
-- Built an end-to-end lakehouse pipeline on Databricks processing ~369K synthetic records (customers, accounts, transactions, loans) modelled on RBC, TD, Scotiabank, BMO and CIBC; Bronze→Silver→Gold Delta tables with data-quality checks.
-- Analyzed fraud, churn and credit risk with PySpark and window functions; identified that sub-600 credit scores carried ~5x the loan default rate of other bands and that online-shopping transactions had ~1.9x the average fraud rate.
-- Trained a Spark MLlib Random Forest to predict loan default (AUC 0.67; credit score the top driver) and delivered a gold bank-scorecard table for Power BI/Tableau dashboards.
-
-## LinkedIn post (draft)
-I built a Databricks project comparing Canada's Big 5 banks (RBC, TD, Scotiabank, BMO, CIBC) on a synthetic retail-banking dataset of ~369K records.
-
-Using PySpark, Delta Lake and Spark MLlib, I built a Bronze→Silver→Gold pipeline and analyzed fraud, churn and loan-default risk. Key finding: customers under a 600 credit score defaulted at ~5x the rate of everyone else.
-
-Data is synthetic (real bank data isn't public), but the workflow mirrors what a bank analytics team does. Code on GitHub: [link]
-
-#Databricks #PySpark #DataAnalytics #Banking #Canada
-
-**LinkedIn → Projects section:** same title, skills tags: Databricks, PySpark, SQL, Delta Lake, Machine Learning, Data Analysis; add the GitHub link and dashboard screenshots.
